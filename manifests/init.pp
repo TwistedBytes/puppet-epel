@@ -26,7 +26,6 @@ class epel (
   $epel_proxy                             = $epel::params::epel_proxy,
   $epel_enabled                           = $epel::params::epel_enabled,
   $epel_gpgcheck                          = $epel::params::epel_gpgcheck,
-  $epel_gpgcheck                          = $epel::params::epel_gpgcheck,
   $epel_repo_gpgcheck                     = $epel::params::epel_repo_gpgcheck,
   $epel_priority                          = $epel::params::epel_priority,
   $epel_metalink                          = $epel::params::epel_metalink,
