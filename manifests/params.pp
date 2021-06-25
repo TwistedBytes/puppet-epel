@@ -26,6 +26,7 @@ class epel::params {
   $epel_enabled                           = '1'
   $epel_gpgcheck                          = '1'
   $epel_repo_gpgcheck                     = '0'
+  $epel_priority                          = undef
   $epel_metalink                          = "https://mirrors.fedoraproject.org/metalink?repo=epel-${os_maj_release}&arch=\$basearch"
   $epel_testing_mirrorlist                = "https://mirrors.fedoraproject.org/metalink?repo=testing-epel${os_maj_release}&arch=\$basearch"
   $epel_testing_baseurl                   = 'absent'
@@ -34,6 +35,7 @@ class epel::params {
   $epel_testing_enabled                   = '0'
   $epel_testing_gpgcheck                  = '1'
   $epel_testing_repo_gpgcheck             = '0'
+  $epel_testing_priority                  = undef
   $epel_testing_metalink                  = "https://mirrors.fedoraproject.org/metalink?repo=testing-epel${os_maj_release}&arch=\$basearch"
   $epel_source_mirrorlist                 = "https://mirrors.fedoraproject.org/metalink?repo=epel-source-${os_maj_release}&arch=\$basearch"
   $epel_source_baseurl                    = 'absent'
@@ -42,6 +44,7 @@ class epel::params {
   $epel_source_enabled                    = '0'
   $epel_source_gpgcheck                   = '1'
   $epel_source_repo_gpgcheck              = '0'
+  $epel_source_priority                   = undef
   $epel_source_metalink                   = "https://mirrors.fedoraproject.org/metalink?repo=epel-source-${os_maj_release}&arch=\$basearch"
   $epel_debuginfo_mirrorlist              = "https://mirrors.fedoraproject.org/metalink?repo=epel-debug-${os_maj_release}&arch=\$basearch"
   $epel_debuginfo_baseurl                 = 'absent'
@@ -50,6 +53,7 @@ class epel::params {
   $epel_debuginfo_enabled                 = '0'
   $epel_debuginfo_gpgcheck                = '1'
   $epel_debuginfo_repo_gpgcheck           = '0'
+  $epel_debuginfo_priority                = undef
   $epel_debuginfo_metalink                = "https://mirrors.fedoraproject.org/metalink?repo=epel-debug-${os_maj_release}&arch=\$basearch"
   $epel_testing_source_mirrorlist         = "https://mirrors.fedoraproject.org/metalink?repo=testing-source-epel${os_maj_release}&arch=\$basearch"
   $epel_testing_source_baseurl            = 'absent'
@@ -58,6 +62,7 @@ class epel::params {
   $epel_testing_source_enabled            = '0'
   $epel_testing_source_gpgcheck           = '1'
   $epel_testing_source_repo_gpgcheck      = '0'
+  $epel_testing_source_priority           = undef
   $epel_testing_source_metalink           = "https://mirrors.fedoraproject.org/metalink?repo=testing-source-epel${os_maj_release}&arch=\$basearch"
   $epel_testing_debuginfo_mirrorlist      = "https://mirrors.fedoraproject.org/metalink?repo=testing-debug-epel${os_maj_release}&arch=\$basearch"
   $epel_testing_debuginfo_baseurl         = 'absent'
@@ -66,5 +71,6 @@ class epel::params {
   $epel_testing_debuginfo_enabled         = '0'
   $epel_testing_debuginfo_gpgcheck        = '1'
   $epel_testing_debuginfo_repo_gpgcheck   = '0'
+  $epel_testing_debuginfo_priority        = undef
   $epel_testing_debuginfo_metalink        = "https://mirrors.fedoraproject.org/metalink?repo=testing-debug-epel${os_maj_release}&arch=\$basearch"
 }
