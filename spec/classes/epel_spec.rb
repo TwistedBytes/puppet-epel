@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'classes/shared_gpgkey'
 require 'classes/shared_base'
@@ -11,8 +13,8 @@ describe 'epel' do
   test_on = {
     supported_os: [
       {
-        'operatingsystem'        => 'RedHat',
-        'operatingsystemrelease' => %w[6 7 8]
+        'operatingsystem' => 'RedHat',
+        'operatingsystemrelease' => %w[7 8 9]
       }
     ]
   }
@@ -24,43 +26,14 @@ describe 'epel' do
       it { is_expected.to contain_class('epel::params') }
 
       case os_facts[:operatingsystemmajrelease]
-      when '6'
-        it_behaves_like :base_6
-        it_behaves_like :gpgkey_6
-        it_behaves_like :epel_source_6
-        it_behaves_like :epel_debuginfo_6
-        it_behaves_like :epel_testing_6
-        it_behaves_like :epel_testing_source_6
-        it_behaves_like :epel_testing_debuginfo_6
-
-        context 'epel_baseurl => https://example.com/epel/6/x86_64' do
-          let(:params) do
-            {
-              epel_baseurl: 'https://example.com/epel/6/x86_64'
-            }
-          end
-
-          it { is_expected.to contain_yumrepo('epel').with(baseurl: 'https://example.com/epel/6/x86_64') }
-          it { is_expected.to contain_yumrepo('epel').with(mirrorlist: 'absent') }
-        end
-
-        context 'epel_mirrorlist => absent' do
-          let(:params) do
-            {
-              epel_mirrorlist: 'absent'
-            }
-          end
-
-          it { is_expected.to contain_yumrepo('epel').with(mirrorlist: 'absent') }
-        end
       when '7'
-        it_behaves_like :base_7
-        it_behaves_like :gpgkey_7
-        it_behaves_like :epel_source_7
-        it_behaves_like :epel_debuginfo_7
-        it_behaves_like :epel_testing_7
-        it_behaves_like :epel_testing_source_7
-        it_behaves_like :epel_testing_debuginfo_7
+        it_behaves_like 'base 7'
+        it_behaves_like 'gpgkey 7'
+        it_behaves_like 'epel source 7'
+        it_behaves_like 'epel debuginfo 7'
+        it_behaves_like 'epel testing 7'
+        it_behaves_like 'epel testing source 7'
+        it_behaves_like 'epel testing debuginfo 7'
 
         context 'epel_baseurl => https://example.com/epel/7/x86_64' do
           let(:params) do
@@ -82,14 +55,26 @@ describe 'epel' do
 
           it { is_expected.to contain_yumrepo('epel').with(mirrorlist: 'absent') }
         end
+
+        context 'epel_username/password' do
+          let(:params) do
+            {
+              epel_username: 'user',
+              epel_password: 'password',
+            }
+          end
+
+          it { is_expected.to contain_yumrepo('epel').with(username: 'user') }
+          it { is_expected.to contain_yumrepo('epel').with(password: 'password') }
+        end
       when '8'
-        it_behaves_like :base_8
-        it_behaves_like :gpgkey_8
-        it_behaves_like :epel_source_8
-        it_behaves_like :epel_debuginfo_8
-        it_behaves_like :epel_testing_8
-        it_behaves_like :epel_testing_source_8
-        it_behaves_like :epel_testing_debuginfo_8
+        it_behaves_like 'base 8'
+        it_behaves_like 'gpgkey 8'
+        it_behaves_like 'epel source 8'
+        it_behaves_like 'epel debuginfo 8'
+        it_behaves_like 'epel testing 8'
+        it_behaves_like 'epel testing source 8'
+        it_behaves_like 'epel testing debuginfo 8'
         context 'epel_baseurl => https://example.com/epel/8/x86_64' do
           let(:params) do
             {
@@ -110,6 +95,58 @@ describe 'epel' do
 
           it { is_expected.to contain_yumrepo('epel').with(mirrorlist: 'absent') }
         end
+
+        context 'epel_username/password' do
+          let(:params) do
+            {
+              epel_username: 'user',
+              epel_password: 'password',
+            }
+          end
+
+          it { is_expected.to contain_yumrepo('epel').with(username: 'user') }
+          it { is_expected.to contain_yumrepo('epel').with(password: 'password') }
+        end
+      when '9'
+        it_behaves_like 'base 9'
+        it_behaves_like 'gpgkey 9'
+        it_behaves_like 'epel source 9'
+        it_behaves_like 'epel debuginfo 9'
+        it_behaves_like 'epel testing 9'
+        it_behaves_like 'epel testing source 9'
+        it_behaves_like 'epel testing debuginfo 9'
+        context 'epel_baseurl => https://example.com/epel/9/x86_64' do
+          let(:params) do
+            {
+              epel_baseurl: 'https://example.com/epel/9/x86_64'
+            }
+          end
+
+          it { is_expected.to contain_yumrepo('epel').with(baseurl: 'https://example.com/epel/9/x86_64') }
+          it { is_expected.to contain_yumrepo('epel').with(mirrorlist: 'absent') }
+        end
+
+        context 'epel_mirrorlist => absent' do
+          let(:params) do
+            {
+              epel_mirrorlist: 'absent'
+            }
+          end
+
+          it { is_expected.to contain_yumrepo('epel').with(mirrorlist: 'absent') }
+        end
+
+        context 'epel_username/password' do
+          let(:params) do
+            {
+              epel_username: 'user',
+              epel_password: 'password',
+            }
+          end
+
+          it { is_expected.to contain_yumrepo('epel').with(username: 'user') }
+          it { is_expected.to contain_yumrepo('epel').with(password: 'password') }
+        end
       end
     end
   end
@@ -118,15 +155,15 @@ describe 'epel' do
     test_on = {
       supported_os: [ # Unfortunate misnomer
         {
-          'operatingsystem'        => 'Fedora',
+          'operatingsystem' => 'Fedora',
           'operatingsystemrelease' => %w[28 29 30]
         },
         {
-          'operatingsystem'        => 'Debian',
+          'operatingsystem' => 'Debian',
           'operatingsystemrelease' => %w[8 9 10]
         },
         {
-          'operatingsystem'        => 'Ubuntu',
+          'operatingsystem' => 'Ubuntu',
           'operatingsystemrelease' => %w[16.04 18.04]
         }
       ]
